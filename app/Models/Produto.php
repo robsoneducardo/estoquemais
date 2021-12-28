@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+// use Movimentos;
+
 class Produto extends Model
 {
     use HasFactory;
@@ -12,4 +14,8 @@ class Produto extends Model
     protected $fillable=[
         'nome',
     ];
+
+    public function movimentos(){
+        return $this->hasMany(Movimento::class);
+    }
 }
