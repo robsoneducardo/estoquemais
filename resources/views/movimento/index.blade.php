@@ -34,6 +34,16 @@
                         <img src="{{asset('icons/edit.svg')}}" alt="editar">
                     </a>
                 </td>
+                <td>
+                    <form action="{{route('movimento.destroy', ['id'=>$movimento->id])}}"
+                            method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit">
+                            <img src="{{asset('icons/delete.svg')}}" alt="">
+                        </button>
+                    </form>
+                </td>
             </tr>
         @endforeach
     </tbody>

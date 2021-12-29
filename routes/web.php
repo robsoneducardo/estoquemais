@@ -56,4 +56,11 @@ Route::prefix("movimento")->group(function(){
     // UPDATE:
     Route::get('/edit/{id}', [MovimentoController::class, 'edit'])
         ->where('id', '[0-9]+')->name('movimento.edit');
+    Route::put('/{id}', [MovimentoController::class, "update"])
+        ->where('id', '[0-9]+')->name('movimento.update');
+
+    // DELETE:
+    Route::delete('/{id}', [MovimentoController::class, 'destroy'])
+        ->where('id', '[0-9]+')->name('movimento.destroy');
+
 });

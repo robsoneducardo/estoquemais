@@ -26,21 +26,39 @@ class MovimentoController extends Controller
     }
 
     public function store(Request $request){
-        // dd("executing MovimentoController.store()");
-        // dd($request);
         Movimento::create($request->all());
         return redirect()->route('movimento.index');
     }
 
     public function edit ($id){
         $movimento = Movimento::where("id", $id)->first();
-        if(!empty($movimento))
-            return view("movimento.edit", ["id"=>$id]);
-        else
+        if(!empty($movimento)){
+            $produtos = Produto::all();
+            return view("movimento.edit", ["movimento"=>$movimento, "produtos"=>$produtos]);
+        }
+        else{
+            $movimentos = Movimento::all();
             return redirect()->route("movimento.index");
+        }
     }
 
     public function update(Request $request){
+        $data = [
+            "data" => $request->data,
+            "tipo" => $request->tipo,
+            "quantidade" => $request->quantidade,
+            "vl_unit" => $request->vl_unit,
+            "produto_id" => $request->produto_id,
+        ];
 
+        Movimento::where("id", $request->id)->update($data);
+
+        $produtos = Produto::all();
+        return redirect()->route("movimento.index");
+    }
+
+    public function destroy($id){
+        Movimento::where('id', $id)->delete();
+        return redirect()->route('movimento.index');
     }
 }

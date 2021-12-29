@@ -22,7 +22,6 @@ class ProdutoController extends Controller
     }
 
     public function edit($id){
-        // dd($id);
         $produto = Produto::where('id', $id)->first();
         if (!empty($produto))
             return view('produto.edit', ['produto'=>$produto]);

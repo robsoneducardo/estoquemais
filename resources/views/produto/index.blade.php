@@ -29,7 +29,8 @@
                     </a>
                 </td>
                 <td>
-                    <form action="{{route('produto.destroy', ['id' => $produto->id])}}" method="POST">
+                    <form action="{{route('produto.destroy', ['id' => $produto->id])}}"
+                            method="POST">
                         @csrf
                         @method('delete')
                         <button type="submit" class="bnt bnt-link" 
