@@ -38,4 +38,9 @@ class ProdutoController extends Controller
         return redirect()->route('produto.index');
     }
 
+    public function destroy($id){
+        Produto::where('id', $id)->delete();
+        return redirect()->route('produto.index');
+    }
+
 }

@@ -15,6 +15,7 @@
 <table class="table">
     <thead>
         <th>Nome</th>
+        <th colspan=2>Ações</th>
     </thead>
     <tbody>
         @foreach($produtos as $produto)
@@ -28,9 +29,14 @@
                     </a>
                 </td>
                 <td>
-                    <a href="#">
-                        <img src="{{asset('icons/delete.svg')}}" alt="">                    
-                    </a>
+                    <form action="{{route('produto.destroy', ['id' => $produto->id])}}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="bnt bnt-link" 
+                                onclick="return confirm('Deseja excluir {{$produto->Nome}}?')">
+                            <img src="{{asset('icons/delete.svg')}}" alt="">
+                        </button>
+                    </form>
                 </td>
             </tr>
         @endforeach

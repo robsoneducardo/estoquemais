@@ -35,6 +35,10 @@ Route::prefix("produto")->group(function(){
         ->where('id', '[0-9]+')->name('produto.edit');
     Route::put('/{id}', [ProdutoController::class, 'update'])
         ->where('id', '[0-9]+')->name('produto.update');
+
+    // DELETE
+    Route::delete('/{id}', [ProdutoController::class, 'destroy'])
+        ->where('id', '[0-9]+')->name('produto.destroy');
 });
 
 Route::prefix("movimento")->group(function(){
